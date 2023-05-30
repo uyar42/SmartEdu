@@ -5,10 +5,7 @@ exports.createUser = async (req, res) => {
   console.log(req.body);
   try {
     const user = await User.create(req.body);
-    res.status(201).json({
-      status: 'success',
-      user,
-    });
+    res.status(201).redirect('/login');
   } catch (error) {
     console.log(error);
     res.status(400).json({
