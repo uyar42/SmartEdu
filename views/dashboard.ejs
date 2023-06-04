@@ -28,7 +28,7 @@ if(user.role==='Student') { %>
           <div class="image-blog">
             <img src="/images/blog_1.jpg" alt="" class="img-fluid" />
           </div>
-          <div class="course-br">
+          < class="course-br">
             <div class="course-title">
               <h2><a href="course-single.html" title=""><%= user.courses[i].name %></a></h2>
             </div>
@@ -46,8 +46,9 @@ if(user.role==='Student') { %>
                 </form>
               </p>
             </div>
+            
           </div>
-        </div>
+        </div>  
       </div>
       <% }  %>
       <!-- end col -->
@@ -65,6 +66,15 @@ if(user.role==='Student') { %>
 <div id="overviews" class="section wb">
   <div class="container">
     <div class="row">
+      <% if(flashMessages) { %> <% if(flashMessages.success) { %>
+
+        <div class="alert alert-success"><%= flashMessages.success %></div>
+
+        <% } else if (flashMessages.error) { %>
+
+        <div class="alert alert-danger"><%= flashMessages.error %></div>
+
+        <% } %> <% } %>
       <!-- Modal Button -->
       <div class="col-lg-12 text-center">
         <button
@@ -101,6 +111,12 @@ if(user.role==='Student') { %>
               <p>
                 <%= courses[i].description %>
               </p>
+            </div>
+            <div class="clearfix">
+              <ul style="list-style-type: none;">
+                <li style="float: left;"><button class="btn btn-primary rounded-0 text-white"><span>UPDATE</span></button></li>
+                <li style="float: right;"><a href="/courses/<%= courses[i].slug %>?_method=DELETE" onclick="return confirm('ARE YOU SURE')" class="btn btn-danger rounded-0 text-white"><span>DELETE</span></a></li>
+              </ul>
             </div>
           </div>
         </div>
